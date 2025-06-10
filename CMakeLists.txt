@@ -19,6 +19,9 @@ set(SOURCES
 
 add_executable(main ${SOURCES})
 
+# Aquí linkeamos GoogleTest y Threads con el ejecutable principal
+target_link_libraries(main PRIVATE gtest gtest_main Threads::Threads)
+
 option(ENABLE_TESTING "Enable a Unit Testing build." ON)
 option(ENABLE_COVERAGE "Enable coverage reporting" ON)
 
@@ -30,9 +33,8 @@ endif()
 
 include(FetchContent)
 FetchContent_Declare(
-    googletest
-    GIT_REPOSITORY https://github.com/google/googletest.git
-    GIT_TAG release-1.11.0
+  googletest
+  URL https://github.com/google/googletest/archive/refs/heads/main.zip
 )
 FetchContent_MakeAvailable(googletest)
 
