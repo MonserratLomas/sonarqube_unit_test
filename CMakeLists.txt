@@ -8,16 +8,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 include_directories(${CMAKE_SOURCE_DIR})
 
-# Archivos fuente principales (en raíz)
+find_package(Threads REQUIRED)
+
+# Solo el main.cpp para el ejecutable principal
 set(SOURCES
     main.cpp
-    test/test_mul.cpp
-    test/test_sub.cpp
-    test/test_sum.cpp
-    test/test_divide.cpp
 )
-
-find_package(Threads REQUIRED)
 
 add_executable(main ${SOURCES})
 target_link_libraries(main PRIVATE Threads::Threads)
@@ -52,7 +48,6 @@ if(ENABLE_TESTING)
         add_test(NAME ${name} COMMAND ${name})
     endfunction()
 
-    # Agrega los tests con ruta en la carpeta test/
     add_test_executable(test_sum test/test_sum.cpp)
     add_test_executable(test_sub test/test_sub.cpp)
     add_test_executable(test_divide test/test_divide.cpp)
