@@ -17,10 +17,10 @@ set(SOURCES
     test/test_divide.cpp
 )
 
-add_executable(main ${SOURCES})
+find_package(Threads REQUIRED)
 
-# Aquí linkeamos GoogleTest y Threads con el ejecutable principal
-target_link_libraries(main PRIVATE gtest gtest_main Threads::Threads)
+add_executable(main ${SOURCES})
+target_link_libraries(main PRIVATE Threads::Threads)
 
 option(ENABLE_TESTING "Enable a Unit Testing build." ON)
 option(ENABLE_COVERAGE "Enable coverage reporting" ON)
@@ -43,7 +43,7 @@ if(ENABLE_TESTING)
 
     function(add_test_executable name source)
         add_executable(${name} ${source})
-        target_link_libraries(${name} PRIVATE gtest gtest_main)
+        target_link_libraries(${name} PRIVATE gtest gtest_main Threads::Threads)
         if (ENABLE_COVERAGE)
             target_link_libraries(${name} PRIVATE gcov)
             target_compile_options(${name} PRIVATE --coverage -fprofile-arcs -ftest-coverage)
