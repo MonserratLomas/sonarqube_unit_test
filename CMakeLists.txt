@@ -11,10 +11,10 @@ include_directories(${CMAKE_SOURCE_DIR})
 # Archivos fuente principales (en raíz)
 set(SOURCES
     main.cpp
-    mul.cpp
-    sub.cpp
-    sum.cpp
-    div.cpp
+    test/test_mul.cpp
+    test/test_sub.cpp
+    test/test_sum.cpp
+    test/test_divide.cpp
 )
 
 add_executable(main ${SOURCES})
