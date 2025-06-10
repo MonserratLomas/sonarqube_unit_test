@@ -8,13 +8,13 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 include_directories(${CMAKE_SOURCE_DIR})
 
-# Archivos fuente principales (ajusta las rutas si están en otra carpeta)
+# Archivos fuente principales (en raíz)
 set(SOURCES
     main.cpp
-    sum.cpp
-    sub.cpp
-    div.cpp
     mul.cpp
+    sub.cpp
+    sum.cpp
+    div.cpp
 )
 
 add_executable(main ${SOURCES})
@@ -50,7 +50,7 @@ if(ENABLE_TESTING)
         add_test(NAME ${name} COMMAND ${name})
     endfunction()
 
-    # Archivos de pruebas, aquí sí con ruta test/
+    # Agrega los tests con ruta en la carpeta test/
     add_test_executable(test_sum test/test_sum.cpp)
     add_test_executable(test_sub test/test_sub.cpp)
     add_test_executable(test_divide test/test_divide.cpp)
